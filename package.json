@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "cse341-l02-team",
   "version": "1.0.0",
   "description": "",
@@ -14,5 +15,22 @@
     "express": "^5.2.1",
     "mongodb": "^7.2.0",
     "mongoose": "^9.6.2"
+=======
+  "name": "cse341",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+>>>>>>> 89cc7356fce7666683ee0d91f983cfb59ba88515
   }
 }

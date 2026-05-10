@@ -1,1 +1,5 @@
-:q
+### Get all contacts (local)
+GET http://localhost:8080/contacts
+
+### Get single contact (local)
+GET http://localhost:8080/contacts/6a00294953cff474f62fb3fe

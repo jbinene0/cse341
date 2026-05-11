@@ -2,22 +2,22 @@
 GET https://cse341-4-dpkk.onrender.com/contacts
 
 ### GET contact by ID
-GET https://cse341-4-dpkk.onrender.com/contacts/6a00296c53cff474f62fb402
+GET https://cse341-4-dpkk.onrender.com/contacts/6a00295f53cff474f62fb400
 
 ### POST - Create a new contact
 POST https://cse341-4-dpkk.onrender.com/contacts
 Content-Type: application/json
 
 {
-    "firstName": "Dallin",
+    "firstName": "Gracia",
     "lastName": "Binene",
-    "email": "dabinene@gmail.com",
+    "email": "grabinene@gmail.com",
     "phone": "208-208-1901",
-    "birthday": "2007-11-09"
+    "birthday": "2003-04-20"
 }
 
 ### PUT - Update a contact
-PUT https://cse341-4-dpkk.onrender.com/contacts/6a00296c53cff474f62fb402
+PUT https://cse341-4-dpkk.onrender.com/contacts/66a00295f53cff474f62fb400
 Content-Type: application/json
 
 {

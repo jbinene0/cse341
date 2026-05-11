@@ -3,3 +3,9 @@ GET http://localhost:8080/contacts
 
 ### Get single contact (local)
 GET http://localhost:8080/contacts/6a00294953cff474f62fb3fe
+
+### Get all contacts (Render)
+GET https://cse341-4-dpkk.onrender.com/contacts
+
+### Get single contact (Render)
+GET https://cse341-4-dpkk.onrender.com/contacts/6a00294953cff474f62fb3fe

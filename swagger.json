@@ -5,7 +5,7 @@
     "description": "REST API documentation for the Contacts project",
     "version": "1.0.0"
   },
-  "host": "https://cse341-4-dpkk.onrender.com",
+  "host": "cse341-4-dpkk.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"

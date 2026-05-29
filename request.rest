@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### PUT - Update a contact
-PUT https://cse341-4-dpkk.onrender.com/contacts/66a00295f53cff474f62fb400
+PUT https://cse341-4-dpkk.onrender.com/contacts/6a00295f53cff474f62fb400
 Content-Type: application/json
 
 {
@@ -29,4 +29,4 @@ Content-Type: application/json
 }
 
 ### DELETE - Delete a contact
-DELETE https://cse341-4-dpkk.onrender.com/contacts/6a00296c53cff474f62fb402
+DELETE https://cse341-4-dpkk.onrender.com/contacts/6a00294953cff474f62fb3fe

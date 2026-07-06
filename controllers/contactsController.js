@@ -13,6 +13,9 @@ const getALLContacts = async (req, res) => {
 
 const getContactById = async (req, res) => {
     try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'Invalid ID format' });
+        }
         const db = getDb();
         const contact = await db.collection('contacts').findOne({ _id: new ObjectId(req.params.id) });
         if (!contact) return res.status(404).json({ message: 'Contact not found' });
@@ -41,8 +44,16 @@ const createContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
     try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'Invalid ID format' });
+        }
+
         const id = new ObjectId(req.params.id);
         const { firstName, lastName, email, phone, birthday } = req.body;
+
+        if (!firstName || !lastName || !email || !phone || !birthday) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
 
         const db = getDb();
         const result = await db.collection('contacts').replaceOne(
@@ -62,6 +73,10 @@ const updateContact = async (req, res) => {
 
 const deleteContact = async (req, res) => {
     try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'Invalid ID format' });
+        }
+
         const id = new ObjectId(req.params.id);
 
         const db = getDb();

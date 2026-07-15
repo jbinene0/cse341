@@ -6,7 +6,7 @@ const doc = {
     description: 'A REST API for managing a book club library and its members. Includes GitHub OAuth authentication.',
     version: '1.0.0',
   },
-  host: 'localhost:8080',
+  host: 'book-club-api-pux6.onrender.com',
   schemes: ['http'],
   tags: [
     { name: 'Books', description: 'Endpoints for managing the book library' },

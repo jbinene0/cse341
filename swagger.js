@@ -7,7 +7,7 @@ const doc = {
     version: '1.0.0',
   },
   host: 'book-club-api-pux6.onrender.com',
-  schemes: ['http'],
+  schemes: ['https'],
   tags: [
     { name: 'Books', description: 'Endpoints for managing the book library' },
     { name: 'Members', description: 'Endpoints for managing book club members' },

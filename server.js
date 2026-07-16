@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const { connectDb } = require('./db/connection');
@@ -18,6 +19,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
   cookie: { secure: process.env.NODE_ENV === 'production' },
 }));
 app.use(passport.initialize());
@@ -86,7 +88,7 @@ app.get('/auth/logout', (req, res, next) => {
 // Root
 app.get('/', (req, res) => {
   res.json({
-    message: '📚 Book Club API is running',
+    message: 'Book Club API is running',
     docs: '/api-docs',
     routes: { books: '/books', members: '/members' },
     auth: { login: '/auth/github', status: '/auth/status', logout: '/auth/logout' },
@@ -97,9 +99,9 @@ app.get('/', (req, res) => {
 connectDb()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`🚀 Server running at http://localhost:${PORT}`);
-      console.log(`📄 API Docs: http://localhost:${PORT}/api-docs`);
-      console.log(`🔐 Login: http://localhost:${PORT}/auth/github`);
+      console.log(`Server running at http://localhost:${PORT}`);
+      console.log(`API Docs: http://localhost:${PORT}/api-docs`);
+      console.log(`Login: http://localhost:${PORT}/auth/github`);
     });
   })
   .catch((err) => {

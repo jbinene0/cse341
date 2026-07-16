@@ -6,7 +6,7 @@ const connectDb = async () => {
   const client = new MongoClient(process.env.MONGODB_URI);
   await client.connect();
   db = client.db('bookclub');
-  console.log('✅ Connected to MongoDB - bookclub database');
+  console.log('Connected to MongoDB - bookclub database');
 };
 
 const getDb = () => {

@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const memberController = require('../controllers/memberController');
 
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401).json({ message: 'You must be logged in to perform this action' });
+};
+
 // #swagger.tags = ['Members']
 // #swagger.summary = 'Get all members'
 // #swagger.description = 'Returns a list of all book club members'
@@ -26,7 +33,7 @@ router.get('/:id', memberController.getMemberById);
 
 // #swagger.tags = ['Members']
 // #swagger.summary = 'Create a new member'
-// #swagger.description = 'Registers a new book club member'
+// #swagger.description = 'Registers a new book club member. Requires authentication.'
 /* #swagger.parameters['body'] = {
      in: 'body',
      required: true,
@@ -40,8 +47,9 @@ router.get('/:id', memberController.getMemberById);
    } */
 // #swagger.responses[201] = { description: 'Member created successfully' }
 // #swagger.responses[400] = { description: 'Missing required fields' }
+// #swagger.responses[401] = { description: 'Not authenticated' }
 // #swagger.responses[500] = { description: 'Server error' }
-router.post('/', memberController.createMember);
+router.post('/', isAuthenticated, memberController.createMember);
 
 // #swagger.tags = ['Members']
 // #swagger.summary = 'Update a member by ID'
@@ -68,7 +76,7 @@ router.post('/', memberController.createMember);
 // #swagger.responses[401] = { description: 'Not authenticated' }
 // #swagger.responses[404] = { description: 'Member not found' }
 // #swagger.responses[500] = { description: 'Server error' }
-router.put('/:id', memberController.updateMember);
+router.put('/:id', isAuthenticated, memberController.updateMember);
 
 // #swagger.tags = ['Members']
 // #swagger.summary = 'Delete a member by ID'
@@ -84,6 +92,6 @@ router.put('/:id', memberController.updateMember);
 // #swagger.responses[401] = { description: 'Not authenticated' }
 // #swagger.responses[404] = { description: 'Member not found' }
 // #swagger.responses[500] = { description: 'Server error' }
-router.delete('/:id', memberController.deleteMember);
+router.delete('/:id', isAuthenticated, memberController.deleteMember);
 
 module.exports = router;

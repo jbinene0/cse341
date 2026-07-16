@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const bookController = require('../controllers/bookController');
 
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401).json({ message: 'You must be logged in to perform this action' });
+};
+
 // #swagger.tags = ['Books']
 // #swagger.summary = 'Get all books'
 // #swagger.description = 'Returns a list of all books in the club library'
@@ -26,7 +33,7 @@ router.get('/:id', bookController.getBookById);
 
 // #swagger.tags = ['Books']
 // #swagger.summary = 'Add a new book'
-// #swagger.description = 'Creates a new book in the library'
+// #swagger.description = 'Creates a new book in the library. Requires authentication.'
 /* #swagger.parameters['body'] = {
      in: 'body',
      required: true,
@@ -42,8 +49,9 @@ router.get('/:id', bookController.getBookById);
    } */
 // #swagger.responses[201] = { description: 'Book created successfully' }
 // #swagger.responses[400] = { description: 'Missing required fields' }
+// #swagger.responses[401] = { description: 'Not authenticated' }
 // #swagger.responses[500] = { description: 'Server error' }
-router.post('/', bookController.createBook);
+router.post('/', isAuthenticated, bookController.createBook);
 
 // #swagger.tags = ['Books']
 // #swagger.summary = 'Update a book by ID'
@@ -72,7 +80,7 @@ router.post('/', bookController.createBook);
 // #swagger.responses[401] = { description: 'Not authenticated' }
 // #swagger.responses[404] = { description: 'Book not found' }
 // #swagger.responses[500] = { description: 'Server error' }
-router.put('/:id', bookController.updateBook);
+router.put('/:id', isAuthenticated, bookController.updateBook);
 
 // #swagger.tags = ['Books']
 // #swagger.summary = 'Delete a book by ID'
@@ -88,6 +96,6 @@ router.put('/:id', bookController.updateBook);
 // #swagger.responses[401] = { description: 'Not authenticated' }
 // #swagger.responses[404] = { description: 'Book not found' }
 // #swagger.responses[500] = { description: 'Server error' }
-router.delete('/:id', bookController.deleteBook);
+router.delete('/:id', isAuthenticated, bookController.deleteBook);
 
 module.exports = router;
